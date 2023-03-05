@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  singlestore:
+    image: singlestore/cluster-in-a-box
+    restart: always
+    environment:
+      LICENSE_KEY: "BDFlMzU1YTRmYzNhYjQ5N2I4NTE0NmIyNGQwMmFiNGJiAAAAAAAAAAAEAAAAAAAAACgwNQIZAK37oyFeyAoDt0QMManPw85HzR93z/P3MQIYb9tRppkx0Maj7IXSxXDfaIya7JQ572voAA=="
+      ROOT_PASSWORD: "password"
+    ports:
+      - '3306:3306'
+      - '8080:8080'
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - '6380:6379'
+  minio:
+    image: quay.io/minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: password
+    command: server --console-address ":9001" /data

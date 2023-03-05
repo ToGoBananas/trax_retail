@@ -1,0 +1,28 @@
+[tool.black]
+line-length = "120"
+[tool.poetry]
+name = "trax_retail"
+version = "0.1.0"
+description = ""
+authors = ["Andrei K <endpoo@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+cython = "*"
+fastapi = {git = "https://github.com/ToGoBananas/fastapi.git", develop = false, rev = "master"}
+pydantic = "*"
+hiredis = "*"
+httpx = {git = "https://github.com/ToGoBananas/httpx.git", develop = false, rev = "master", extras = ["http2"]}
+uvicorn = {extras = ["standard"], version = "*"}
+redis = "*"
+faker = "*"
+black = "22.12.0"
+pre-commit = "^3.0.0"
+brotli-asgi = "*"
+unimport = "*"
+singlestoredb = "*"
+minio = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
