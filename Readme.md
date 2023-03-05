@@ -12,9 +12,9 @@ python startup_scripts/fill_db.py
 
 # Other comments
 
-- I've decided to use SingleStore as database because it has many cool features for ML/CV projects and I've always wanted to try it :)
-- Consistency should be enforced on application side
-- SingleStore might be not the best choice cause of poor integration with python ecosystem
+- I've decided to use SingleStore as a database because it has many cool features for ML/CV projects, and I've always wanted to try it :)
+- Consistency should be enforced on the application side
+- SingleStore might not be the best choice cause of poor integration with python ecosystem
 - The images are going to be stored in S3 storage (minio)
 
 # Areas of improvement
