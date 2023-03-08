@@ -39,6 +39,7 @@ To make the coding challenge simpler, I've made several assumptions:
 - Health-checks
 - Migrations (it might be possible to use alembic)
 - Transactions and overall consistency
+- Query optimization?
 
 # Bonus
 
