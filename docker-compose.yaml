@@ -23,3 +23,29 @@ services:
       MINIO_ROOT_USER: root
       MINIO_ROOT_PASSWORD: password
     command: server --console-address ":9001" /data
+  app:
+    build: .
+    depends_on:
+      - singlestore
+      - redis
+      - minio
+    command: ['uvicorn', '--host', '0.0.0.0', '--port', '8001', '--log-level', 'warning', '--workers', '4', 'services.api.main:app']
+    environment:
+      DB_HOST: "singlestore"
+      REDIS_HOST: "redis"
+      MINIO_HOST: "minio"
+      REDIS_PORT: "6379"
+    ports:
+      - "8001:8001"
+  migrations:
+    build: .
+    environment:
+      DB_HOST: "singlestore"
+      REDIS_HOST: "redis"
+      MINIO_HOST: "minio"
+      REDIS_PORT: "6379"
+    depends_on:
+      - singlestore
+      - redis
+      - minio
+    command: bash -c "python db/migrations.py && python startup_scripts/fill_db.py"

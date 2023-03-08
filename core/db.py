@@ -1,6 +1,9 @@
-from core.settings.db import DBConfig
+from enum import Enum
+from enum import unique
+
 import singlestoredb as s2
-from enum import Enum, unique
+
+from core.settings.db import DBConfig
 
 
 @unique
@@ -22,9 +25,7 @@ class SingleStoreClient:
 
     def connect(self):
         if self._conn is None:
-            self._conn = s2.connect(
-                **self.db_config.dict(), results_type=self.results_type.value
-            )
+            self._conn = s2.connect(**self.db_config.dict(), results_type=self.results_type.value)
         return self._conn
 
     def close(self):

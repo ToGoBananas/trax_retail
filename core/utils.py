@@ -1,3 +1,8 @@
+import json
+from datetime import datetime
+from decimal import Decimal
+
+import orjson
 from pydantic import BaseModel
 
 
@@ -13,3 +18,26 @@ class Singleton(type):
 class ImmutableModel(BaseModel):
     class Config:
         frozen = True
+
+
+def default_json(obj):
+    if isinstance(obj, Decimal):
+        if len(str(obj)) > 10:
+            return str(obj)
+        else:
+            return float(obj)
+
+    if isinstance(obj, set):
+        return tuple(obj)
+
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+
+    raise TypeError
+
+
+def orjson_dumps(v, *, option=orjson.OPT_NON_STR_KEYS) -> bytes:
+    try:
+        return orjson.dumps(v, option=option, default=default_json)
+    except TypeError:  # fallback for big int
+        return json.dumps(v, default=default_json).encode("utf-8")

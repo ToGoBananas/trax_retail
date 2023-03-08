@@ -1,7 +1,4 @@
-import json
 import os
-import uuid
-from datetime import datetime
 
 import orjson
 from minio import Minio
@@ -31,29 +28,26 @@ class S3Client:
         filename = file_path.split("/")[-1]
         if save_dir:
             filename = os.path.join(save_dir, filename)
-        return self.client.fput_object(
-            bucket_name,
-            filename,
-            file_path,
-            content_type=content_type
-        )
+        return self.client.fput_object(bucket_name, filename, file_path, content_type=content_type)
 
     @classmethod
     def _get_public_policy(cls, bucket_name):
-        return orjson.dumps({
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Principal": {"AWS": "*"},
-                    "Action": ["s3:GetBucketLocation", "s3:ListBucket"],
-                    "Resource": f"arn:aws:s3:::{bucket_name}",
-                },
-                {
-                    "Effect": "Allow",
-                    "Principal": {"AWS": "*"},
-                    "Action": "s3:GetObject",
-                    "Resource": f"arn:aws:s3:::{bucket_name}/*",
-                },
-            ],
-        })
+        return orjson.dumps(
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": {"AWS": "*"},
+                        "Action": ["s3:GetBucketLocation", "s3:ListBucket"],
+                        "Resource": f"arn:aws:s3:::{bucket_name}",
+                    },
+                    {
+                        "Effect": "Allow",
+                        "Principal": {"AWS": "*"},
+                        "Action": "s3:GetObject",
+                        "Resource": f"arn:aws:s3:::{bucket_name}/*",
+                    },
+                ],
+            }
+        )
