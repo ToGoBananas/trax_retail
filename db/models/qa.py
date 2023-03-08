@@ -21,8 +21,8 @@ qa_snapshot_session_table = """
 qa_leaderboard_table = """
     CREATE ROWSTORE TABLE qa_leaderboard (
         username VARCHAR(14) NOT NULL UNIQUE,
-        activity_points DECIMAL(2),
-        accuracy_points DECIMAL(2),
+        activity_points DECIMAL(18,2),
+        accuracy_points DECIMAL(18,2),
         SHARD KEY (username)
     );
 """

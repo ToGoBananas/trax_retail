@@ -1,7 +1,8 @@
-from pydantic import constr, Field
+from pydantic import constr
 
 from apps.entities.product.types import UPC
-from core.types import NaiveDatetime, TINYTEXT
+from core.types import NaiveDatetime
+from core.types import TINYTEXT
 from core.utils import ImmutableModel
 
 
