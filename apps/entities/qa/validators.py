@@ -19,6 +19,6 @@ class QASessionValidator(BaseValidator):
             LIMIT {session_size};
         """  # TODO: check performance on large tables
         data = self.db_client.fetchall(q)
-        if len(data) != 100:
+        if len(data) != session_size:
             raise BadRequestException("Not enough snapshots to validate")
         return [x["id"] for x in data]
