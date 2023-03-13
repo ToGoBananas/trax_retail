@@ -90,7 +90,7 @@ class QASessionResultManager(BaseManager, _SessionLockMixin):
 
 class QALeaderBoardManager(BaseManager):
     POINTS_FOR_ACCURACY = 0.1
-    POINTS_PER_SNAPSHOT = 10
+    POINTS_PER_SESSION = 10
     queries: QALeaderboardQueries = QALeaderboardQueries
 
     def _get_lock(self):
@@ -101,7 +101,7 @@ class QALeaderBoardManager(BaseManager):
             matches = self.queries.get_accuracy_matches(username, QASessionManager.MAX_REVIEWS_COUNT)
             if matches is not None:
                 points_for_accuracy = int(matches) * self.POINTS_FOR_ACCURACY
-                points_for_activity = self.queries.get_finished_sessions_count(username) * self.POINTS_PER_SNAPSHOT
+                points_for_activity = self.queries.get_finished_sessions_count(username) * self.POINTS_PER_SESSION
                 self.queries.update_leaderboard(username, points_for_activity, points_for_accuracy)
 
     def retrieve(self):
