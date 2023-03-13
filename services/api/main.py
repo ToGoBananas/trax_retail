@@ -4,7 +4,7 @@ from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi import HTTPException
 
-from db.client import BaseManager
+from apps.entities.base import BaseManager
 from services.api.utils import ORJSONResponse
 from services.api.v1.qa.endpoints import router
 

@@ -9,7 +9,7 @@ from apps.entities.qa.validators import QASessionValidator
 from core.exceptions import ConflictException
 from core.exceptions import NotFoundException
 from core.redis import RedisLockClient
-from db.client import BaseManager
+from apps.entities.base import BaseManager
 from db.queries.qa.leaderboard import QALeaderboardQueries
 from db.queries.qa.session import QASessionQueries
 from db.queries.qa.session_result import QASessionResultQueries

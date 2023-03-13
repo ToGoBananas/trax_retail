@@ -1,5 +1,5 @@
 from core.exceptions import BadRequestException
-from db.client import BaseValidator
+from apps.entities.base import BaseValidator
 
 
 class QASessionValidator(BaseValidator):

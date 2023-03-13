@@ -7,7 +7,7 @@ from apps.entities.product.manager import ProductManager
 from apps.entities.product.manager import ProductSnapshotManager
 from apps.entities.product.schemas.product import ProductCreateSchema
 from apps.entities.product.schemas.product_snapshot import ProductSnapshotCreateSchema
-from db.client import BaseManager
+from apps.entities.base import BaseManager
 
 
 fake = Faker()

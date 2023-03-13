@@ -1,6 +1,6 @@
 from apps.entities.product.schemas.product import ProductCreateSchema
 from apps.entities.product.schemas.product_snapshot import ProductSnapshotCreateSchema
-from db.client import BaseManager
+from apps.entities.base import BaseManager
 from db.queries.products.product import ProductQueries
 from db.queries.products.product_snapshot import ProductSnapshotQueries
 
